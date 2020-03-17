@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Program {
 	
@@ -20,7 +21,21 @@ public class Program {
 		}
 	}
 	void insert(){
+		try{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter user name: ");
+		String name = scanner.nextLine();
+		System.out.println("Enter phone: ");
+		String phone = scanner.nextLine();
 		
+		String query = "INSERT INTO users (name, phone) " +
+					   "VALUES ('" + name + "', '" + phone + "' )";
+		Statement statement = connection.createStatement();
+		statement.executeUpdate(query);
+		System.out.println("Rows added");
+		}
+		catch(Exception e){System.out.println(e.getMessage());
+		}
 	}
 	void close(){
 		try{
